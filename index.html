@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -30,17 +30,17 @@
     }
 
     #video-background > div {
-      position:relative;
-      height:0;
-      padding-bottom:177.94253938832253%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
 
     #video-background iframe {
-      position:absolute;
-      width:100%;
-      height:100%;
-      left:0;
-      top:0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     #top-left-cover {
@@ -51,7 +51,7 @@
       height: 80px; /* Reduced height */
       background-color: #000; /* Changed to black */
       z-index: 2; /* Ensure it's on top of the video */
-      transition: opacity 0.25s ease-in-out; /* Add transition for opacity */
+      transition: opacity 0.15s ease-in-out; /* Faster fade-out transition */
     }
 
     #top-left-cover.fade-out {
@@ -62,7 +62,7 @@
 <body>
   <div id="video-background">
     <div>
-      <iframe class='sproutvideo-player' src='https://videos.sproutvideo.com/embed/4491d1b11f18e3cbcd/8363d86611b5ef40?autoPlay=true&amp;showControls=false&amp;loop=true' width='640' height='1139' frameborder='0' allowfullscreen referrerpolicy='no-referrer-when-downgrade' title='Video Player'></iframe>
+      <iframe class='sproutvideo-player' src='https://videos.sproutvideo.com/embed/4491d1b11f18e3cbcd/8363d86611b5ef40?autoPlay=true&amp;showControls=false&amp;loop=true' allowfullscreen></iframe>
     </div>
   </div>
   <div id="top-left-cover"></div>
@@ -74,13 +74,15 @@
     videoBackground.addEventListener('transitionend', () => {
       if (videoBackground.classList.contains('fade-out')) {
         topLeftCover.classList.add('fade-out'); // Add fade-out class to the black box
-        window.location.href = 'https://pcmi-infanta.vercel.app';
+        setTimeout(() => {
+          window.location.href = 'https://pcmi-infanta.vercel.app';
+        }, 500); // Wait 500ms before redirecting
       }
     });
 
     setTimeout(() => {
       videoBackground.classList.add('fade-out');
-    }, 7000);
+    }, 6500); // Fade out the video after 6.5 seconds
   </script>
 </body>
 </html>
